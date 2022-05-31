@@ -5,13 +5,18 @@ socket.on("connect", () => {
 });
 
 
+
 socket.on("update_imu_values", (data) => {
   if ('payload' in data){
-	console.log(data['payload']['x']);
-}
+	x= data['payload']['x'];
+	y= data['payload']['y'];
+	temp= data['payload']['z'];
+	}
+	update();
 });
 
  window.buttonpressed=(value)=>{
-        
+	x++;
+	console.log(x);        
 	socket.emit("Start_Stop_Dodge_Game", {stand: value});
     }
