@@ -242,6 +242,8 @@ var animate = function() {
     }else{
 	start_distance=20;
 	distance=0;
+	Tx=0;
+	Ty=0;
     }	
     x = x;
     y = y;
@@ -332,8 +334,10 @@ var animate = function() {
         gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
 
         var offset = 5;
-        if (view_matrix[i][14] > -60 - offset && view_matrix[i][14] < -60 + offset) {
-            if (Txs < Tx + offset && Txs > Tx - offset && Tys < Ty + offset && Tys > Ty - offset) {
+        if (view_matrix[i][14] < -8 && view_matrix[i][14] > -12) {
+            if ((Txs > Tx && Txs > Tx + offset  ||Txs > Tx - offset && Txs < Tx )&&
+		(Tys > Ty && Tys > Ty + offset  ||Tys > Ty - offset && Tys < Ty )
+			) {
                 console.log("collision");
 		if (running == 1){
 			alert(" game over");
