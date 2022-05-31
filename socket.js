@@ -1,22 +1,17 @@
-const socket = new WebSocket("ws://localhost:3000");
-var state =
-    socket.addEventListener("open", () => {
-        // send a message to the server
-
-    });
-
-// receive a message from the server
-socket.addEventListener("message", ({ state, data }) => {
-    const packet = JSON.parse(data);
-    console.log(data);
-    if ('payload' in data) {
-        state.angle = data['payload'];
-    }
+import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+const socket = io("https://192.168.2.172:5001",  { transports : ['websocket'] })
+socket.on("connect", () => {
+  console.log("socket is connected" +socket.connected); // true
 });
 
-function send_led_state(value) {
-    socket.send(JSON.stringify({
-        type: "Start_Stop_Dodge_Game",
-        content: { stand: value }
-    }));
+
+socket.on("update_imu_values", (data) => {
+  if ('payload' in data){
+	console.log(data['payload']['x']);
 }
+});
+
+ window.buttonpressed=(value)=>{
+        
+	socket.emit("Start_Stop_Dodge_Game", {stand: value});
+    }

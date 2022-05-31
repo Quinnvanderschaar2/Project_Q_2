@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>webgl-obj-loader dev</title>
+<title>webgl-obj-loader dev</title>
     <meta charset="UTF-8">
     <script id="shader-fs" type="x-shader/x-fragment">
         precision mediump float; varying vec2 vTextureCoord; varying vec3 vTransformedNormal; varying vec4 vPosition; varying vec3 vDiffuse; varying vec3 vSpecular; varying float vSpecularExponent; void main(void) { vec3 V = -normalize(vPosition.xyz); vec3 L
@@ -19,7 +18,9 @@
     <!-- <script type='text/javascript' src='../dist/webgl-obj-loader.min.js'></script> -->
     <script type='text/javascript' src='app.js'></script>
     <script type='text/javascript' src='webcam.js'></script>
-
+    <script  type="module" type='text/javascript' src='socket.js'></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>	
+    </script>
     <style>
         body {
             margin: 0;
@@ -65,8 +66,8 @@
         </pre>
         <canvas id="mycanvas"></canvas>
         <h2>x: {{ $store.state.angle.x}} y: {{ $store.state.angle.y}} Temperature: {{ $store.state.angle.z}}</h2>
-        <button class="btn btn-danger buttun_size" name="StartGame" onclick="animate()" "> Start Game</button>
-        <button class="btn btn-danger buttun_size " name="PauseGame " onclick="animate() " "> Stop Game</button>
+        <button class="btn btn-danger buttun_size" name="StartGame" onclick="buttonpressed(1)"> Start Game</button>
+        <button class="btn btn-danger buttun_size " name="PauseGame " onclick="buttonpressed(0)"> Stop Game</button>
     </div>
 </body>
 </body>
